@@ -93,6 +93,8 @@ public class ActivityPoductList0 extends AppCompatActivity {
 		});
 
 	}
+
+	//显示第一页
 	private void loadProductList(int cid) {
 		String url = Const.SERVER_URL + Const.SERVLET_URL + "getproductListByCid";
 		pageNo = 1;
@@ -137,6 +139,8 @@ public class ActivityPoductList0 extends AppCompatActivity {
 			}
 		});
 	}
+
+	//加载更多
 	private void loadMoreProductList(int cid){
 		String url=Const.SERVER_URL+Const.SERVLET_URL+"getproductListByCid";
 		pageNo++;

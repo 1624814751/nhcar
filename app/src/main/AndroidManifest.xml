@@ -30,6 +30,12 @@
             android:name=".ActivityPoductList0" />
         <activity
             android:name=".ActivityCategory" />
+        <activity
+            android:name=".ActivityPersonal" />
+        <activity
+            android:name=".ActivityMyResgister" />
+        <activity
+            android:name=".ActivityMyLogin" />
 
     </application>
 

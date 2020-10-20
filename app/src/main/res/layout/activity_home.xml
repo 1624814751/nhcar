@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+
+            </FrameLayout>
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:visibility="gone" >
+
+            </TabWidget>
+
+            <RadioGroup
+                android:id="@+id/home_radio_button_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/home_tab_main"
+                    style="@style/home_tab_bottom"
+                    android:background="@drawable/home_tab_background_selector"
+                    android:checked="true"
+                    android:drawableTop="@drawable/home_tab_main_selector"
+                    android:text="首页" />
+
+                <RadioButton
+                    android:id="@+id/home_tab_search"
+                    style="@style/home_tab_bottom"
+                    android:background="@drawable/home_tab_background_selector"
+                    android:drawableTop="@drawable/home_tab_search_selector"
+                    android:text="搜索" />
+
+                <RadioButton
+                    android:id="@+id/home_tab_category"
+                    style="@style/home_tab_bottom"
+                    android:background="@drawable/home_tab_background_selector"
+                    android:drawableTop="@drawable/home_tab_category_selector"
+                    android:text="品牌" />
+
+                <RadioButton
+                    android:id="@+id/home_tab_cart"
+                    style="@style/home_tab_bottom"
+                    android:background="@drawable/home_tab_background_selector"
+                    android:drawableTop="@drawable/home_tab_cart_selector"
+                    android:text="购物车" />
+
+                <RadioButton
+                    android:id="@+id/home_tab_personal"
+                    style="@style/home_tab_bottom"
+                    android:background="@drawable/home_tab_background_selector"
+                    android:drawableTop="@drawable/home_tab_personal_selector"
+                    android:text="我的" />
+
+            </RadioGroup>
+        </LinearLayout>
+    </TabHost>
+
+</LinearLayout>

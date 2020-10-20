@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:background="@color/white" >
+
+    <loopj.android.image.SmartImageView
+        android:id="@+id/index_gallery_item_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/defaultcarmini" />
+
+    <TextView
+        android:id="@+id/index_gallery_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/index_gallery_item_image"
+        android:layout_centerHorizontal="true"
+        android:text="概念车"
+        android:textColor="@color/red"
+        android:textSize="@dimen/micro_text_size" />
+
+</RelativeLayout>

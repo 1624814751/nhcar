@@ -1,5 +1,6 @@
 package com.nhcar;
 
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ public class ActivityHome extends TabActivity {
 		Intent i_cartIntent = new Intent(getApplicationContext(),
 				ActivityIndex.class);
 		Intent i_PersonalIntent = new Intent(getApplicationContext(),
-				ActivityIndex.class);
+				ActivityPersonal.class);
 
 		// 2.添加选项卡
 		mTabHost.addTab(mTabHost.newTabSpec(TAB_MAIN).setIndicator(TAB_MAIN)

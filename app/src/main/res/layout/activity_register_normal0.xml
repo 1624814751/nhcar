@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
+            android:textColor="@color/black"
             android:background="@drawable/category_selection_gridview_bg"
             android:hint="@string/register_normal_useraccount_hint"
             android:inputType="text" />
@@ -83,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="35dp"
+            android:textColor="@color/black"
             android:background="@drawable/category_selection_gridview_bg"
             android:hint="@string/register_normal_email_hint"
             android:inputType="text|textEmailAddress" />
@@ -108,6 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="35dp"
+            android:textColor="@color/black"
             android:background="@drawable/category_selection_gridview_bg"
             android:hint="@string/register_normal_password_hint"
             android:inputType="text|textPassword" />
@@ -133,6 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
             android:background="@drawable/category_selection_gridview_bg"
             android:hint="@string/register_normal_repassword_hint"
             android:inputType="text|textPassword" />

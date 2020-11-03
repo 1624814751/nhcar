@@ -1,36 +1,30 @@
 package com.nhcar;
 
 import android.content.Intent;
-import android.content.SyncStatusObserver;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.nhcar.entity.EUser;
-import com.nhcar.entity.EUserResult;
 import com.nhcar.utils.Const;
 
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ActivityMyLogin extends AppCompatActivity {
+public class ActivityMyLogin2 extends AppCompatActivity {
     // 声明控件、对象
     private OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)
@@ -40,7 +34,8 @@ public class ActivityMyLogin extends AppCompatActivity {
 
     private EditText loginaccount, loginpassword;
     private Button personal_back_button, login, register;
-    private String userName, psw, spPsw;//获取的用户名，密码，加密密码
+    private ToggleButton isShowPassword;
+    // private String userName, psw, spPsw;//获取的用户名，密码，加密密码
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +45,6 @@ public class ActivityMyLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         initView();
-        initData();
         initListener();
 
     }// onCreate End
@@ -64,9 +58,6 @@ public class ActivityMyLogin extends AppCompatActivity {
 
     }
 
-    private void initData() {
-        registers();
-    }
 
     private void initListener() {
         personal_back_button.setOnClickListener(new View.OnClickListener() {
@@ -76,20 +67,73 @@ public class ActivityMyLogin extends AppCompatActivity {
             }
         });
         login.setOnClickListener(new View.OnClickListener() {
+            public ActivityMyLogin2 getActivityMyLogin2() {
+                return activityMyLogin2;
+            }
+
+            public View.OnClickListener setActivityMyLogin(ActivityMyLogin2 activityMyLogin2) {
+                this.activityMyLogin2 = activityMyLogin2;
+                return this;
+            }
+
+            public ActivityMyLogin2 activityMyLogin2;
+
             @Override
             public void onClick(View v) {
-                registers();
+                String uname = loginaccount.getText().toString().trim();
+                if (TextUtils.isEmpty(uname)) {
+                    Toast.makeText(activityMyLogin2, "请输入用户名", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String psw = loginpassword.getText().toString().trim();
+                if (TextUtils.isEmpty(psw)) {
+                    Toast.makeText(activityMyLogin2, "请输入密码", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String url = Const.SERVLET_URL + Const.SERVLET_URL + "addUser";
+                OkHttpClient client = new OkHttpClient();
+                final Call call = client.newCall(new Request.Builder().url(url/*"http://10.0.0.2:8080/login?user=" +uname+"&pwd="+psw*/).get().build());
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        final String body = response.body().string();
+                        if ("true".equals(body)) {
+                            Toast.makeText(activityMyLogin2,"登录成功",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), ActivityPersonal.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(activityMyLogin2,"登录失败",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
-        });
+        }.setActivityMyLogin(this));
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ActivityMyResgister.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityMyResgister2.class);
                 startActivity(intent);
             }
         });
+//        isShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked){
+//                    loginpassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+//                }else{
+//                    loginpassword.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//                }
+//            }
+//        });
     }
 
+    //=========================================方法2====================================
 //    private void registers() {
 ////开始登录，获取用户名和密码 getText().toString().trim();
 //        userName = loginaccount.getText().toString().trim();
@@ -128,7 +172,7 @@ public class ActivityMyLogin extends AppCompatActivity {
 //            Toast.makeText(this, "输入的用户名和密码不一致", Toast.LENGTH_SHORT).show();
 //            return;
 //        } else {
-//            Toast.makeText(this, "此用户名不 存在", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "此用户名不存在", Toast.LENGTH_SHORT).show();
 //        }
 //    }
 //
@@ -190,91 +234,65 @@ public class ActivityMyLogin extends AppCompatActivity {
 //    }
 //}
 
-    private void registers() {
-        //先检查填写内容是否正确
-        String uname = loginaccount.getText().toString().trim();
-        if (TextUtils.isEmpty(uname)) {
-            Toast.makeText(this, "请输入账号", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        String psw = loginpassword.getText().toString().trim();
-        if (TextUtils.isEmpty(psw)) {
-            Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        EUser user = new EUser();
-        user.setUname(uname);
-        user.setUpwd(psw);
+//    ==================================     我是分界线（方法1）       ========================================
 
-        String url = Const.SERVER_URL + Const.SERVLET_URL + "checkLogin";
-        Log.d("<<<<<url>>>", url);
+//    private void registers() {
+//        //先检查填写内容是否正确
+//        String uname = loginaccount.getText().toString().trim();
+//        if (TextUtils.isEmpty(uname)) {
+//            Toast.makeText(this, "请输入用户名", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        String psw = loginpassword.getText().toString().trim();
+//        if (TextUtils.isEmpty(psw)) {
+//            Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        EUser eUser = new EUser();
+//        eUser.setUname(uname);
+//        eUser.setUpwd(psw);
+//
+//        String url = Const.SERVLET_URL + Const.SERVLET_URL + "addUser";
+//        Log.d("<<<<<url>>>", url);
+//
+//        FormBody.Builder fromBody = new FormBody.Builder();//表单参数对象
+//        String userJson = gson.toJson(eUser);
+//        String userJsonEncode = "";
+//        try {
+//            userJsonEncode = URLEncoder.encode(userJson, "utf-8");
+//            Log.d("<<<<<userJson>>>", userJsonEncode);
+//        } catch (Exception e) {
+//            Toast.makeText(this, "数据编码错误", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        fromBody.add("userstr", userJsonEncode);//参数1，还可以添加更多参数
+//
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .post(fromBody.build())
+//                .build();
+//        Call call = okHttpClient.newCall(request);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                Log.d("<<register返回:>>", e.getMessage());
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String result = response.body().string();//接收接口返回的内容
+//                Log.d("<<register返回:>>", result);
+//                final EUserResult eUserResult = gson.fromJson(result, EUserResult.class);
+//
+//                //在UI线程中更新
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        //此处更新UI:数据绑定到GridView
+//                        Toast.makeText(ActivityMyLogin.this, eUserResult.getMsg(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//        });
 
-        FormBody.Builder fromBody = new FormBody.Builder();//表单参数对象
-        String userJson = gson.toJson(user);
-        String userJsonEncode = "";
-        try {
-            userJsonEncode = URLEncoder.encode(userJson, "utf-8");
-            Log.d("<<<<<userJson>>>", userJsonEncode);
-        } catch (Exception e) {
-            Toast.makeText(this, "数据编码错误", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        fromBody.add("userstr", userJsonEncode);//参数1，还可以添加更多参数
-
-        Request request = new Request.Builder()
-                .url(url)
-                .post(fromBody.build())
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            public ActivityMyLogin getActivityMyLogin() {
-                return activityMyLogin;
-            }
-
-            public Callback setActivityMyLogin(ActivityMyLogin activityMyLogin) {
-                this.activityMyLogin = activityMyLogin;
-                return this;
-            }
-
-            public ActivityMyLogin activityMyLogin;
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("<<register返回:>>", e.getMessage());
-            }
-
-
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                 String result = response.body().string();//接收接口返回的内容
-               // Log.d("<<register返回:>>", result);
-
-                final EUserResult eUserResult = gson.fromJson(result, EUserResult.class);
-                try {
-                }catch (Exception e){
-                    Looper.prepare();
-                    if (eUserResult.getResult() == 1) {
-                        //Toast.makeText(activityMyLogin,"登录成功", Toast.LENGTH_SHORT).show();
-                        //Intent intent=new Intent();
-                       // intent.setClass(ActivityMyLogin.this,ActivityPersonal.class);
-                        Intent intent = new Intent(getApplicationContext(), ActivityPersonal.class);
-                        startActivity(intent);
-                      //Intent intent = new Intent(getApplicationContext(), ActivityPersonal.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(activityMyLogin, "登录失败", Toast.LENGTH_SHORT).show();
-                    }
-                    Looper.loop();
-                }
-                //在UI线程中更新
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //此处更新UI:数据绑定到GridView
-                        Toast.makeText(ActivityMyLogin.this, eUserResult.getMsg(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        }.setActivityMyLogin(this));
-    }
 }

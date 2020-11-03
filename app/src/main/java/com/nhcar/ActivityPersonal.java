@@ -2,7 +2,6 @@ package com.nhcar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -10,25 +9,10 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.nhcar.ActivityPoductList0;
-import com.nhcar.R;
-import com.nhcar.adapter.CarNewsAdapter;
-import com.nhcar.entity.ECarNewsResult;
-import com.nhcar.entity.ECategory;
-import com.nhcar.entity.EUser;
-import com.nhcar.utils.Const;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class ActivityPersonal extends AppCompatActivity {
     // 声明控件、对象
@@ -64,14 +48,14 @@ public class ActivityPersonal extends AppCompatActivity {
         personal_reg_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),ActivityMyResgister.class);
+                Intent intent=new Intent(getApplicationContext(), ActivityMyResgister.class);
                 startActivity(intent);
             }
         });
         personal_login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),ActivityMyLogin.class);
+                Intent intent=new Intent(getApplicationContext(), ActivityMyLogin.class);
                 startActivity(intent);
             }
         });

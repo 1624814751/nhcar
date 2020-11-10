@@ -1,6 +1,7 @@
 package com.nhcar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
 import android.os.Looper;
@@ -38,6 +39,9 @@ public class ActivityMyLogin extends AppCompatActivity {
             .build();
     private Gson gson = new Gson();  //JSON转换工具
 
+    //声明一个
+    private SharedPreferences sp;
+
     private EditText loginaccount, loginpassword;
     private Button personal_back_button, login, register;
     private String userName, psw, spPsw;//获取的用户名，密码，加密密码
@@ -66,6 +70,7 @@ public class ActivityMyLogin extends AppCompatActivity {
 
     private void initData() {
         registers();
+        sp=this.getSharedPreferences("nhcarsp",MODE_PRIVATE);
     }
 
     private void initListener() {
@@ -202,7 +207,7 @@ public class ActivityMyLogin extends AppCompatActivity {
             Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
             return;
         }
-        EUser user = new EUser();
+        final EUser user = new EUser();
         user.setUname(uname);
         user.setUpwd(psw);
 
@@ -239,6 +244,7 @@ public class ActivityMyLogin extends AppCompatActivity {
             public ActivityMyLogin activityMyLogin;
             @Override
             public void onFailure(Call call, IOException e) {
+
                 Log.d("<<register返回:>>", e.getMessage());
             }
 
@@ -250,28 +256,40 @@ public class ActivityMyLogin extends AppCompatActivity {
                // Log.d("<<register返回:>>", result);
 
                 final EUserResult eUserResult = gson.fromJson(result, EUserResult.class);
-                try {
-                }catch (Exception e){
-                    Looper.prepare();
-                    if (eUserResult.getResult() == 1) {
-                        //Toast.makeText(activityMyLogin,"登录成功", Toast.LENGTH_SHORT).show();
-                        //Intent intent=new Intent();
-                       // intent.setClass(ActivityMyLogin.this,ActivityPersonal.class);
-                        Intent intent = new Intent(getApplicationContext(), ActivityPersonal.class);
-                        startActivity(intent);
-                      //Intent intent = new Intent(getApplicationContext(), ActivityPersonal.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(activityMyLogin, "登录失败", Toast.LENGTH_SHORT).show();
-                    }
-                    Looper.loop();
-                }
+//                try {
+//                }catch (Exception e){
+//                    Looper.prepare();
+//                    if (eUserResult.getResult() == 1) {
+//                        //Toast.makeText(activityMyLogin,"登录成功", Toast.LENGTH_SHORT).show();
+//                        //Intent intent=new Intent();
+//                       // intent.setClass(ActivityMyLogin.this,ActivityPersonal.class);
+//                        Intent intent = new Intent(getApplicationContext(), ActivityPersonal.class);
+//                        startActivity(intent);
+//                      //Intent intent = new Intent(getApplicationContext(), ActivityPersonal.class);
+//                        startActivity(intent);
+//                    } else {
+//                        Toast.makeText(activityMyLogin, "登录失败", Toast.LENGTH_SHORT).show();
+//                    }
+//                    Looper.loop();
+//                }
                 //在UI线程中更新
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         //此处更新UI:数据绑定到GridView
-                        Toast.makeText(ActivityMyLogin.this, eUserResult.getMsg(), Toast.LENGTH_SHORT).show();
+                        if (eUserResult.getResult()>1){
+                            //登录成功要记录用户登录信息
+                            SharedPreferences.Editor editor=sp.edit();
+                            editor.putBoolean("isLogin",true);//记录是否登录
+                            editor.putString("loginUserName",user.getUname());//记录登陆者账号
+                            editor.putInt("loginUserID",eUserResult.getResult());//记录登陆者ID
+                            editor.commit();
+                            Toast.makeText(activityMyLogin, "登录成功", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else{
+                            Toast.makeText(ActivityMyLogin.this, eUserResult.getMsg(), Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
             }

@@ -63,6 +63,7 @@
     <string name="personal_more">更多</string>
     <string name="personal_welcome">欢迎来到南华汽车商城</string>
     <string name="personal_login">登录</string>
+    <string name="personal_change_message">修改信息</string>
     <string name="personal_fast_search">订单状态速查</string>
     <string name="personal_wait_pay">待付款订单</string>
     <string name="personal_all_order">全部订单</string>
@@ -135,6 +136,17 @@
     <string name="digital">数码家电馆</string>
     <string name="ebook">好书汇</string>
     <string name="daily">百货集</string>
+
+    <!-- 用户信息修改  -->
+    <string name="user_message_change">用户信息修改</string>
+    <string name="user_message_change_email">邮箱：</string>
+    <string name="user_message_change_email_hint">请输入邮箱帐号</string>
+    <string name="user_message_change_password">旧密码：</string>
+    <string name="user_message_change_password_hint">请输入旧密码</string>
+    <string name="user_message_change_repassword">新密码：</string>
+    <string name="user_message_change_repassword_hint">请输入新密码</string>
+    <string name="user_message_change_newrepassword">确认密码：</string>
+    <string name="user_message_change_newrepassword_hint">请输入确认密码</string>
 
     <!-- JazzyViewPager -->
     <string-array name="jazzy_effects">

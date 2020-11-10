@@ -36,6 +36,8 @@
             android:name=".ActivityMyResgister" />
         <activity
             android:name=".ActivityMyLogin" />
+        <activity
+            android:name=".ActivityChangeMessage" />
 
     </application>
 

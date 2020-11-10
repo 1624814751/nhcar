@@ -45,7 +45,7 @@ public class ActivityMyResgister extends AppCompatActivity {
     private Button login, productback;
     private String userName, psw, pswAgain;//用户名，密码，再次输入的密码的控件的获取值
 
-    private List<EUserResult> listuser = new ArrayList<EUserResult>();
+    private List<EUserResult> user = new ArrayList<EUserResult>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -267,6 +267,12 @@ public class ActivityMyResgister extends AppCompatActivity {
                     @Override
                     public void run() {
                         //此处更新UI:数据绑定到GridView
+                        if (eUserResult.getResult()==1){
+                            Intent intent=new Intent(getApplicationContext(),ActivityMyLogin.class);
+                            startActivity(intent);
+                            //Toast.makeText(activityMyResgister,"注册成功", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                         Toast.makeText(ActivityMyResgister.this, eUserResult.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 });

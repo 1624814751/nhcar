@@ -1,10 +1,12 @@
 package com.nhcar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -109,7 +111,6 @@ public class ActivityPoductList0 extends AppCompatActivity {
 				.url(url)
 				.post(formBody.build())
 				.build();
-
 		Call call = okHttpClient.newCall(request);
 		call.enqueue(new Callback() {
 			@Override
@@ -131,7 +132,7 @@ public class ActivityPoductList0 extends AppCompatActivity {
                     @Override
                     public void run() {
                         //更新UI
-						productListAdapter=new ProductListAdapter(getApplicationContext(),listProduct);
+						productListAdapter=new ProductListAdapter(ActivityPoductList0.this,listProduct);
 						productlist_listview.setAdapter(productListAdapter);
 
                     }
@@ -177,6 +178,7 @@ public class ActivityPoductList0 extends AppCompatActivity {
 					@Override
 					public void run() {
 						//更新UI
+
 						productListAdapter.notifyDataSetChanged();
 
 					}

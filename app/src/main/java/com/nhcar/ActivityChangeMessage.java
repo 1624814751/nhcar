@@ -1,5 +1,6 @@
 package com.nhcar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ActivityChangeMessage extends AppCompatActivity {
+public class ActivityChangeMessage extends Activity {
     // 声明控件、对象
     private OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)

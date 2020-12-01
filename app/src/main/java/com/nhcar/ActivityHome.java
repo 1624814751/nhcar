@@ -49,7 +49,7 @@ public class ActivityHome extends TabActivity {
 		Intent i_categotyIntent = new Intent(getApplicationContext(),
 				ActivityCategory.class);
 		Intent i_cartIntent = new Intent(getApplicationContext(),
-				ActivityIndex.class);
+				ActivityCar.class);
 		Intent i_PersonalIntent = new Intent(getApplicationContext(),
 				ActivityPersonal.class);
 

@@ -51,6 +51,17 @@
                 android:text="TextView"
                 android:textColor="#ff0000"
                 android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/addToCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/add_to_car_button_normal"
+                android:text="放入购物车"
+                />
         </RelativeLayout>
     </LinearLayout>
 

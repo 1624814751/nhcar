@@ -38,6 +38,8 @@
             android:name=".ActivityMyLogin" />
         <activity
             android:name=".ActivityChangeMessage" />
+        <activity
+            android:name=".ActivityCar" />
 
     </application>
 

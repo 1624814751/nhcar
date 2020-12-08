@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/id_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/android_title_bg" >
+
+        <Button
+            android:id="@+id/search_back_button"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:drawableLeft="@drawable/back"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingLeft="10dp" />
+
+        <TextView
+            android:id="@+id/TextView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="false"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dip"
+            android:text="@string/search_car"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/medium_text_size" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/search_context"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="5dp"
+            android:hint="请输入您想搜索的内容"
+            android:textColor="@color/black"
+            android:background="@drawable/setbar_bg"/>
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/search_btn"/>
+
+    </LinearLayout>
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <com.nhcar.view.MyListView
+                android:id="@+id/productlist_listview"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:divider="@drawable/filter_spider_line" >
+            </com.nhcar.view.MyListView>
+
+            <Button
+                android:id="@+id/btnmore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/search_more" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -46,6 +46,8 @@ public class ActivityHome extends TabActivity {
 		// 1. 声明各选项卡对应跳转的意图对象
 		Intent i_mainIntent = new Intent(getApplicationContext(),
 				ActivityIndex.class);
+		Intent i_searchIntent = new Intent(getApplicationContext(),
+				ActivitySearch.class);
 		Intent i_categotyIntent = new Intent(getApplicationContext(),
 				ActivityCategory.class);
 		Intent i_cartIntent = new Intent(getApplicationContext(),
@@ -56,6 +58,8 @@ public class ActivityHome extends TabActivity {
 		// 2.添加选项卡
 		mTabHost.addTab(mTabHost.newTabSpec(TAB_MAIN).setIndicator(TAB_MAIN)
 				.setContent(i_mainIntent));
+		mTabHost.addTab(mTabHost.newTabSpec(TAB_SEARCH).setIndicator(TAB_MAIN)
+				.setContent(i_searchIntent));
 		mTabHost.addTab(mTabHost.newTabSpec(TAB_CATEGORY)
 				.setIndicator(TAB_CATEGORY).setContent(i_categotyIntent));
 		mTabHost.addTab(mTabHost.newTabSpec(TAB_CART).setIndicator(TAB_CART)
@@ -77,6 +81,9 @@ public class ActivityHome extends TabActivity {
 						switch (arg1) {
 							case R.id.home_tab_main:
 								mTabHost.setCurrentTabByTag(TAB_MAIN);
+								break;
+							case R.id.home_tab_search:
+								mTabHost.setCurrentTabByTag(TAB_SEARCH);
 								break;
 							case R.id.home_tab_category:
 								mTabHost.setCurrentTabByTag(TAB_CATEGORY);

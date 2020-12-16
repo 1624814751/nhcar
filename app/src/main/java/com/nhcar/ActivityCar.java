@@ -1,18 +1,12 @@
 package com.nhcar;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,17 +17,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nhcar.adapter.CartAdapter;
+import com.nhcar.adapter.SearchAdapter;
 import com.nhcar.entity.ECartltem;
-import com.nhcar.entity.EUserResult;
+import com.nhcar.entity.EComment;
+import com.nhcar.entity.EProductListResult;
 import com.nhcar.utils.Const;
 
 import java.io.IOException;
-import java.lang.reflect.TypeVariable;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import loopj.android.image.SmartImage;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -198,6 +193,8 @@ public class ActivityCar extends AppCompatActivity {
             }
         });
     }
+
+
 }
 
 

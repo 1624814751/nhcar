@@ -32,6 +32,7 @@
         <activity android:name=".ActivityChangeMessage" />
         <activity android:name=".ActivityCar" />
         <activity android:name=".ActivitySearch" />
+        <activity android:name=".ActivityComment" />
     </application>
 
 </manifest>

@@ -31,6 +31,16 @@
             android:textColor="@color/gray"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/conmment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="300dp"
+            android:layout_toRightOf="@+id/category_image"
+            android:text="用户名"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
     </RelativeLayout>
 
 </RelativeLayout>

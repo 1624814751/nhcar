@@ -54,6 +54,7 @@ public class CommentAdapter extends BaseAdapter {
             convertView=layoutInflater.inflate(R.layout.activity_conmment_item,null);
             //获取项布局中的控件
             holder.cn=convertView.findViewById(R.id.conmment_content);
+            holder.nm=convertView.findViewById(R.id.conmment_name);
             holder.tv=convertView.findViewById(R.id.conmment_date);
             convertView.setTag(holder);
         }else{
@@ -61,6 +62,7 @@ public class CommentAdapter extends BaseAdapter {
         }
         //视图中控件的数据绑定
         holder.cn.setText(listCat.get(position).getCcontent());
+        holder.nm.setText(listCat.get(position).getCname());
         Date date=new Date();
         holder.tv.setText(date.toLocaleString());
 
@@ -71,6 +73,7 @@ public class CommentAdapter extends BaseAdapter {
     class ViewHolder{
         TextView cn;
         TextView tv;
+        TextView nm;
     }
 }
 

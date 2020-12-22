@@ -47,7 +47,7 @@ public  class ActivityComment extends AppCompatActivity {
 
     private ListView productlist_listview;
     private Button Conmmenttback, CommentMore;
-    private TextView conmment_date,conmment_content;
+    private TextView conmment_date,conmment_content,conmment_name;
     private int pageNo = 0;//当前页码
     private List<EComment> listProduct = new ArrayList<>();//存放信息，当前页累加
     private CommentAdapter commentAdapter;//数据适配器对象
@@ -70,6 +70,7 @@ public  class ActivityComment extends AppCompatActivity {
         CommentMore = this.findViewById(R.id.CommentMore);
         conmment_date=this.findViewById(R.id.conmment_date);
         conmment_content=this.findViewById(R.id.conmment_content);
+        conmment_name=this.findViewById(R.id.conmment_name);
 
     }
 
